@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpaceOptions Order Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">SpaceOptions</p>
+          <h1>Order Desk</h1>
+          <p class="lead">Create orders and adjust inventory. Every change writes to Google Sheets instantly.</p>
+        </div>
+        <div class="hero-card">
+          <p class="label">Quick Status</p>
+          <div id="status" class="status info">Set your Apps Script Web App URL to begin.</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="panel" id="settings">
+        <div class="panel-header">
+          <h2>Settings</h2>
+          <p>Connect your Google Apps Script web app to this site.</p>
+        </div>
+        <div class="panel-body settings-grid">
+          <div>
+            <label class="field-label" for="webAppUrl">Apps Script Web App URL</label>
+            <input id="webAppUrl" class="input" placeholder="https://script.google.com/macros/s/.../exec">
+            <p class="hint">Use the /exec URL from Apps Script Deployment.</p>
+          </div>
+          <div class="button-stack">
+            <button id="saveSettings" class="primary">Save</button>
+            <button id="testConnection" class="ghost">Test Connection</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="orders">
+        <div class="panel-header">
+          <h2>New Order</h2>
+          <p>Every order writes to the Orders and Transactions tabs.</p>
+        </div>
+        <form id="orderForm" class="panel-body">
+          <div class="grid-two">
+            <div>
+              <label class="field-label" for="builder">Builder Name</label>
+              <input id="builder" class="input" placeholder="Builder name" required>
+            </div>
+            <div>
+              <label class="field-label" for="orderNotes">Notes</label>
+              <input id="orderNotes" class="input" placeholder="Optional notes">
+            </div>
+          </div>
+
+          <div class="items-section">
+            <div class="items-header">
+              <h3>Items</h3>
+              <button type="button" id="addItem" class="ghost">Add Item</button>
+            </div>
+            <div id="itemsContainer" class="items-container"></div>
+          </div>
+
+          <button type="submit" class="primary">Submit Order</button>
+        </form>
+      </section>
+
+      <section class="panel" id="inventory">
+        <div class="panel-header">
+          <h2>Inventory</h2>
+          <p>Adjust inventory and see live stock levels.</p>
+        </div>
+        <div class="panel-body inventory-grid">
+          <div class="inventory-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Stock</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTable"></tbody>
+            </table>
+          </div>
+          <form id="adjustForm" class="adjust-form">
+            <label class="field-label" for="adjustItem">Item</label>
+            <input id="adjustItem" class="input" placeholder="Item name" required>
+
+            <label class="field-label" for="adjustQty">Quantity</label>
+            <input id="adjustQty" class="input" type="number" min="1" placeholder="Qty" required>
+
+            <label class="field-label" for="adjustDirection">Direction</label>
+            <select id="adjustDirection" class="input">
+              <option value="in">IN</option>
+              <option value="out">OUT</option>
+            </select>
+
+            <label class="field-label" for="adjustNotes">Notes</label>
+            <input id="adjustNotes" class="input" placeholder="Optional notes">
+
+            <button type="submit" class="primary">Update Inventory</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Need the Apps Script code? It lives in your repo under google-apps-script/Code.gs.</p>
+    </footer>
+  </div>
+
+  <script src="public/js/app.js"></script>
+</body>
+</html>
