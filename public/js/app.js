@@ -29,7 +29,6 @@ function setStatus(message, type = 'info') {
 
 async function requestJson(url, options) {
   const response = await fetch(url, {
-    headers: { 'Content-Type': 'application/json' },
     ...options
   });
 
